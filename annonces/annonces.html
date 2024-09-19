@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <img src="../resources/cpu.png" alt="Logo">
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="../index.html" class="hover">Accueil</a></li>
+            <li><a href="" class="active">Annonces</a></li>
+            <li><a href="" class="hover"><i class="fa-solid fa-circle-plus"></i> Publiez une annonce</a></li>
+        </ul>
+    </header>
+    <div class="main">
+        <section class="filter">
+            <form class="container">
+                <!-- Region -->
+                <label for="options">Région</label>
+                <select id="options" name="options" required>
+                    <option value="">Choisir votre gouvernorat</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Beja">Beja</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Gabes">Gabes</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">Kasserine</option>
+                    <option value="Kebili">Kebili</option>
+                    <option value="Kef">Kef</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                    <option value="Medenine">Medenine</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                </select>
+
+                <!-- Type -->
+                <label for="type">Type</label>
+                <select name="type" id="type" required>
+                    <option value="">Choisir un type</option>
+                    <option value="S+1">S+1</option>
+                    <option value="S+2">S+2</option>
+                    <option value="S+3">S+3</option>
+                </select>
+
+                <!-- Budget -->
+                <label for="budget">Budget (TND)</label>
+                <input type="number" id="budget" name="budget" placeholder="Entrez votre budget" min="0" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </section>
+        <section class="listings">
+            <div class="annonce">
+                <div class="titre">
+                    <div>
+                        <h3>Appartement</h3>
+                        <p>S+2</p>
+                    </div>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia! Animi architecto sed autem ducimus hic...
+                    <button class="plus">plus</button>
+                </div>
+                <div class="prix">500dt/mois</div>
+                <div class="footer">
+                    <div class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Tunis
+                    </div>
+                    <button class="louer">Louer</button>
+                </div>
+            </div>
+            <div class="annonce">
+                <div class="titre">
+                    <div>
+                        <h3>Appartement</h3>
+                        <p>S+2</p>
+                    </div>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia! Animi architecto sed autem ducimus hic...
+                    <button class="plus">plus</button>
+                </div>
+                <div class="prix">500dt/mois</div>
+                <div class="footer">
+                    <div class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Tunis
+                    </div>
+                    <button class="louer">Louer</button>
+                </div>
+            </div>
+            <div class="annonce">
+                <div class="titre">
+                    <div>
+                        <h3>Appartement</h3>
+                        <p>S+2</p>
+                    </div>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia! Animi architecto sed autem ducimus hic...
+                    <button class="plus">plus</button>
+                </div>
+                <div class="prix">500dt/mois</div>
+                <div class="footer">
+                    <div class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Tunis
+                    </div>
+                    <button class="louer">Louer</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

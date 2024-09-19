@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif ;
+    
+}
+
+body{
+    overflow-y: hidden;
+}
+
+/* Navbar */
+
+header {
+    background-color: rgb(59, 33, 83);
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+header img{
+    height: 35px;
+    margin-left: 30px;
+}
+
+header ul {
+    display: flex;
+    margin-right: 30px;
+}
+
+header li {
+    list-style: none;
+    margin: 18px 5px;
+}
+
+li i {
+    margin-right: 5px;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.hover:hover{
+    background-color: gray;
+}
+
+.active {
+    background-color: white;
+    color: black;
+}
+
+/* Hamburger Menu */
+
+.hamburger {
+    display: none; 
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.hamburger i {
+    font-size: 28px;
+    color: white;
+}
+
+@media (max-width: 565px) {
+    header ul {
+        display: none; 
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        position: absolute;
+        top: 55px;
+        right: -10;
+        background-color: rgb(59, 33, 83);
+        z-index: 1000;
+    }
+
+    header ul.show {
+        display: flex; 
+    }
+
+    li {
+        margin: 20px 0px;
+        padding-left: 10px;
+    }
+
+    header ul li {
+        text-align: right;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger .fa-bars {
+        display: block; 
+    }
+
+    .hamburger .fa-times {
+        display: none; 
+    }
+
+    .hamburger.show .fa-bars {
+        display: none; 
+    }
+
+    .hamburger.show .fa-times {
+        display: block; 
+    }
+}
+
+
+/* main */
+
+/* main container */
+.main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    background-color: #f4f4f9;
+    height: 100vh;
+}
+
+/* filter section */
+.filter {
+    background-color: rgb(187, 182, 182); 
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+.container{
+    width: 100%;
+}
+
+.filter label {
+    display: block;
+    font-size: 16px;
+}
+
+.filter select, 
+.filter input,
+.filter button{
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0 20px 0;
+    width: 100%;
+    border: none;
+    font-size: 14px;
+}
+
+.filter button{
+    cursor: pointer;
+    background-color: rgb(83, 83, 83);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.filter button:hover{
+    background-color: rgb(51, 51, 51);
+}
+
+/* listings section */
+.listings {
+    background-color: #e9e2e2;
+    padding: 20px 20px 50px 20px;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+}
+
+.annonce{
+    padding: 30px;
+    margin: 20px;
+    width: auto;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.titre{
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titre i{
+    margin-right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: brown;
+}
+
+.titre p{
+    opacity: 0.5;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.description{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.description button{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 16px;
+    margin-top: 10px;
+    color: rgb(106, 47, 161);
+}
+
+.prix{
+    color: rgb(106, 47, 161);
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location{
+    color: brown;
+}
+
+.footer button{
+    height: 30px;
+    width: 60px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 0;
+    background-color: rgb(94, 92, 112);
+    color: white;
+    cursor: pointer;
+}
+
+.footer button:hover{
+    background-color: rgb(67, 64, 94);
+}
+
+@media (max-width: 799px){
+    .main{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter{
+        height: fit-content;
+    }
+}
