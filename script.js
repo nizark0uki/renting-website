@@ -12,4 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('explore').addEventListener('click', function() {
         window.location.href = './annonces/annonces.html';
     });
+
+    document.getElementById('add').addEventListener('click', function() {
+        window.location.href = './add listing form/add.html';
+    });
 });

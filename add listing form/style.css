@@ -2,18 +2,132 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
     margin: 0;
 }
+
+/* Navbar */
+
+header {
+    background-color: rgb(59, 33, 83);
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+header img{
+    height: 35px;
+    margin-left: 30px;
+}
+
+header ul {
+    display: flex;
+    margin-right: 30px;
+}
+
+header li {
+    list-style: none;
+    margin: 18px 5px;
+}
+
+li i {
+    margin-right: 5px;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.hover:hover{
+    background-color: gray;
+}
+
+.active {
+    background-color: white;
+    color: black;
+}
+
+/* Hamburger Menu */
+
+.hamburger {
+    display: none; 
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.hamburger i {
+    font-size: 28px;
+    color: white;
+}
+
+@media (max-width: 599px) {
+    header ul {
+        display: none; 
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        position: absolute;
+        top: 41px;
+        right: -10;
+        background-color: rgb(59, 33, 83);
+        z-index: 1000;
+    }
+
+    header ul.show {
+        display: flex; 
+    }
+
+    li {
+        margin: 20px 0px;
+        padding-left: 10px;
+    }
+
+    header ul li {
+        text-align: right;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger .fa-bars {
+        display: block; 
+    }
+
+    .hamburger .fa-times {
+        display: none; 
+    }
+
+    .hamburger.show .fa-bars {
+        display: none; 
+    }
+
+    .hamburger.show .fa-times {
+        display: block; 
+    }
+}
+
+/* form */
 
 .contact-form {
     background-color: white;
     padding: 30px; 
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0,0,0,0.1); 
-    width: 400px; 
+    max-width: 400px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 10%);
 }
 
 .contact-form h2 {
