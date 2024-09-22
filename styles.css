@@ -201,8 +201,9 @@ li a {
     margin: 20px;
 }
 
-.annonces{
+#lastListing{
     display: flex;
+    align-items: center;
 }
 
 .annonce{
@@ -214,8 +215,35 @@ li a {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info{
+    width: 100%;
+}
+
+.image img{
+    height: 180px;
+    width: 280px;
+    margin-bottom: 20px;
+}
+
 .titre{
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.titre i{
+    margin-right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: brown;
 }
 
 .titre p{
@@ -243,12 +271,12 @@ li a {
 .prix{
     color: rgb(106, 47, 161);
     font-weight: bold;
-    margin-bottom: 15px;
-    border-bottom: 1px solid gray;
-    padding-bottom: 5px;
 }
 
 .footer{
+    padding-top: 10px;
+    margin-top: 5px;
+    border-top: 1px solid gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -272,6 +300,8 @@ li a {
 .footer button:hover{
     background-color: rgb(67, 64, 94);
 }
+
+
 
 @media (max-width: 745px){
     .annonces{
@@ -311,3 +341,5 @@ footer .socials i{
     font-size: 30px;
     margin: 5px;
 }
+
+

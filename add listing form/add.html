@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>connecter</title>
+    <title>Publiez une annonce</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -17,27 +17,31 @@
         <ul>
             <li><a href="../index.html" class="hover">Accueil</a></li>
             <li><a href="../annonces/annonces.html" class="hover">Annonces</a></li>
-            <li><a href="" class="active"><i class="fa-solid fa-circle-plus" ></i> Publiez une annonce</a></li>
+            <li><a href="" class="active"><i class="fa-solid fa-circle-plus"></i> Publiez une annonce</a></li>
         </ul>
     </header>
     <div class="contact-form">
-        <h2>Se connecter</h2>
-        <form id="contact-form">
+        <h2>Publiez une annonce</h2>
+        <form id="contact-form" action="base.php" method="POST" enctype="multipart/form-data">
             <div class="input-group">
                 <label for="name">Nom et Prénom</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" autocomplete="name" required>
             </div>
             <div class="input-group">
-                <label for="email">Adresse Gmail</label>
-                <input type="email" id="email" name="email" required>
+                <label for="type">Type</label>
+                <input type="text" id="type" name="type" required> 
+            </div>
+            <div class="input-group">
+                <label for="prix">Prix</label>
+                <input type="text" id="prix" name="prix" required>
             </div>
             <div class="input-group">
                 <label for="phone">Numéro de Téléphone</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
             </div>
             <div class="input-group">
                 <label for="options">Gouvernorat</label>
-                <select id="options" name="options" required>
+                <select id="options" name="option" autocomplete="address-level1" required>
                     <option value="">Choisir votre gouvernorat</option>
                     <option value="Ariana">Ariana</option>
                     <option value="Beja">Beja</option>
@@ -63,7 +67,11 @@
                     <option value="Tozeur">Tozeur</option>
                     <option value="Tunis">Tunis</option>
                     <option value="Zaghouan">Zaghouan</option>
-                </select>
+                </select> 
+            </div>
+            <div class="input-group">
+                <label for="img">Ajouter Image</label>
+                <input type="file" id="img" name="img" accept="image/*"> 
             </div>
             <button type="submit">Ajouter</button>
         </form>

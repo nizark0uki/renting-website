@@ -8,6 +8,5 @@ document.addEventListener("DOMContentLoaded", function() {
         menu.classList.toggle('show');
         hamburger.classList.toggle('show');
     });
-
     
 });

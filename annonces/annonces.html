@@ -22,7 +22,7 @@
     </header>
     <div class="main">
         <section class="filter">
-            <form class="container">
+            <form method="GET" action="get_last_listing.php" class="container">
                 <!-- Region -->
                 <label for="options">Région</label>
                 <select id="options" name="options" >
@@ -55,85 +55,84 @@
 
                 <!-- Type -->
                 <label for="type">Type</label>
-                <select name="type" id="type" >
-                    <option value="">Choisir un type</option>
-                    <option value="S+1">S+1</option>
-                    <option value="S+2">S+2</option>
-                    <option value="S+3">S+3</option>
-                </select>
-
+                <input type="text" name="type" id="type" placeholder="choisissez votre type">
                 <!-- Budget -->
                 <label for="budget">Budget (TND)</label>
                 <input type="number" id="budget" name="budget" placeholder="Entrez votre budget" min="0" >
                 <button type="submit">Filtrer</button>
             </form>
         </section>
-        <section class="listings">
-            <div class="annonce">
-                <div class="titre">
-                    <div>
-                        <h3>Appartement</h3>
-                        <p>S+2</p>
-                    </div>
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia! Animi architecto sed autem ducimus hic...
-                    <button class="plus">plus</button>
-                </div>
-                <div class="prix">500dt/mois</div>
-                <div class="footer">
-                    <div class="location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        Tunis
-                    </div>
-                    <button class="louer">Louer</button>
-                </div>
-            </div>
-            <div class="annonce">
-                <div class="titre">
-                    <div>
-                        <h3>Appartement</h3>
-                        <p>S+2</p>
-                    </div>
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia! Animi architecto sed autem ducimus hic...
-                    <button class="plus">plus</button>
-                </div>
-                <div class="prix">500dt/mois</div>
-                <div class="footer">
-                    <div class="location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        Tunis
-                    </div>
-                    <button class="louer">Louer</button>
-                </div>
-            </div>
-            <div class="annonce">
-                <div class="titre">
-                    <div>
-                        <h3>Appartement</h3>
-                        <p>S+2</p>
-                    </div>
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia! Animi architecto sed autem ducimus hic...
-                    <button class="plus">plus</button>
-                </div>
-                <div class="prix">500dt/mois</div>
-                <div class="footer">
-                    <div class="location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        Tunis
-                    </div>
-                    <button class="louer">Louer</button>
-                </div>
-            </div>
+        
+        <section class="listings" id="listings">
+            <form action="get_last_listing.php">
+                <div id="lastListing"></div>
+            </form>
         </section>
     </div>
+
     <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch all listings when the page loads
+            fetchListings();
+
+            // filter
+            const filterForm = document.querySelector("form.container");
+            filterForm.addEventListener("submit", function(e) {
+                e.preventDefault(); // Prevent page reload
+                let formData = new FormData(filterForm); // Get form data
+                fetchListings(formData); // Fetch filtered listings
+            });
+
+            // delete buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('delete-btn')) {
+                    let listingId = e.target.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this listing?')) {
+                        deleteListing(listingId);
+                    }
+                }
+            });
+        });
+
+        function fetchListings(formData = null) {
+            let xhr = new XMLHttpRequest();
+            let url = 'get_last_listing.php';
+
+            // If there are filters, append them as query parameters
+            if (formData) {
+                let params = new URLSearchParams(formData).toString();
+                url += '?' + params;
+            }
+
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("lastListing").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        function deleteListing(listingId) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'delete_listing.php', true); // Create 'delete_listing.php' to handle deletion
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    if (xhr.responseText === 'Listing deleted successfully') {
+                        document.querySelector('.annonce[data-id="' + listingId + '"]').remove();
+                    } else {
+                        alert('Failed to delete the listing: ' + xhr.responseText);
+                    }
+                }
+            };
+            xhr.send('id=' + listingId);
+        }
+
+
+    </script>
+    
 </body>
 </html>
