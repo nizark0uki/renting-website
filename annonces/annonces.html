@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../resources/cpu.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">    
+    <title>Annonces</title>
 </head>
 <body>
     <header>
-        <img src="../resources/cpu.png" alt="Logo">
+        <img src="../resources/cpu1.png" alt="Logo">
         <div class="hamburger">
             <i class="fas fa-bars"></i>
             <i class="fas fa-times"></i>
@@ -52,7 +54,6 @@
                     <option value="Tunis">Tunis</option>
                     <option value="Zaghouan">Zaghouan</option>
                 </select>
-
                 <!-- Type -->
                 <label for="type">Type</label>
                 <input type="text" name="type" id="type" placeholder="choisissez votre type">
@@ -70,69 +71,23 @@
         </section>
     </div>
 
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <h2>Confirmer la suppression</h2>
+            <p>Cette action ne peut pas être annulée.</p>
+            <input type="email" id="emailInput" placeholder="Entrez votre email" required />
+            <div class="btn-container">
+                <button class="close">Annuler</button>
+                <button id="confirmDelete">Supprimer</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="script.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Fetch all listings when the page loads
-            fetchListings();
-
-            // filter
-            const filterForm = document.querySelector("form.container");
-            filterForm.addEventListener("submit", function(e) {
-                e.preventDefault(); // Prevent page reload
-                let formData = new FormData(filterForm); // Get form data
-                fetchListings(formData); // Fetch filtered listings
-            });
-
-            // delete buttons
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('delete-btn')) {
-                    let listingId = e.target.getAttribute('data-id');
-                    if (confirm('Are you sure you want to delete this listing?')) {
-                        deleteListing(listingId);
-                    }
-                }
-            });
-        });
-
-        function fetchListings(formData = null) {
-            let xhr = new XMLHttpRequest();
-            let url = 'get_last_listing.php';
-
-            // If there are filters, append them as query parameters
-            if (formData) {
-                let params = new URLSearchParams(formData).toString();
-                url += '?' + params;
-            }
-
-            xhr.open("GET", url, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById("lastListing").innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
-
-        function deleteListing(listingId) {
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', 'delete_listing.php', true); // Create 'delete_listing.php' to handle deletion
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    if (xhr.responseText === 'Listing deleted successfully') {
-                        document.querySelector('.annonce[data-id="' + listingId + '"]').remove();
-                    } else {
-                        alert('Failed to delete the listing: ' + xhr.responseText);
-                    }
-                }
-            };
-            xhr.send('id=' + listingId);
-        }
-
-
-    </script>
+    
+    
     
 </body>
 </html>

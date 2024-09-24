@@ -21,9 +21,10 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $nom = $conn->real_escape_string($_POST['name']);
-    $type = $conn->real_escape_string($_POST['type']); // Ensure form input name="type"
+    $type = $conn->real_escape_string($_POST['type']); 
+    $prix = $conn->real_escape_string($_POST['prix']); 
     $phone = $conn->real_escape_string($_POST['phone']);
-    $prix = $conn->real_escape_string($_POST['prix']); // Ensure form input name="prix"
+    $email = $conn->real_escape_string($_POST['email']); 
     $governorate = $conn->real_escape_string($_POST['option']);
 
     // Handle image upload (check if image exists)
@@ -43,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Image: $image<br>";
 
     // Insert data into the database
-    $sql = "INSERT INTO loan_user(`name`, `type`, `prix`, `tel`, `governorat`, `image`) 
-            VALUES ('$nom', '$type', '$prix', '$phone', '$governorate', '$image')";
+    $sql = "INSERT INTO loan_user(`name`, `type`, `prix`, `tel`,`email` ,`governorat`, `image`) 
+            VALUES ('$nom', '$type', '$prix', '$phone','$email', '$governorate', '$image')";
 
     // Check if insertion is successful
     if ($conn->query($sql) === TRUE) {

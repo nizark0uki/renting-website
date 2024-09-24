@@ -4,30 +4,38 @@ $username = "root";
 $password = "";
 $dbname = "loan_user";
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the ID is provided
-if (isset($_POST['id'])) {
-    $id = intval($_POST['id']); // Ensure it's an integer
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = intval($_POST['id']);  // Get ID from the POST request
+    $email = $conn->real_escape_string($_POST['email']);  // Get the email from the POST request and prevent SQL injection
 
-    // Prepare the SQL statement
-    $sql = "DELETE FROM loan_user WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+    // Verify the email associated with the listing before deletion
+    $verifySql = "SELECT email FROM loan_user WHERE id = $id";
+    $result = $conn->query($verifySql);
 
-    if ($stmt->execute()) {
-        echo "Listing deleted successfully.";
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row['email'] === $email) {
+            // If the email matches, proceed with deletion
+            $deleteSql = "DELETE FROM loan_user WHERE id = $id";
+            if ($conn->query($deleteSql) === TRUE) {
+                echo "Listing deleted successfully";
+            } else {
+                echo "Error deleting listing: " . $conn->error;
+            }
+        } else {
+            echo "Error: Incorrect email for listing ID $id";
+        }
     } else {
-        echo "Error deleting listing: " . $conn->error;
+        echo "No listing found with ID $id";
     }
-
-    $stmt->close();
-} else {
-    echo "No ID provided.";
 }
 
 $conn->close();

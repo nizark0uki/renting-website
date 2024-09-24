@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publiez une annonce</title>
+    <title>Publier une annonce</title>
+    <link rel="shortcut icon" href="../resources/cpu.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <img src="../resources/cpu.png">
+        <img src="../resources/cpu1.png">
         <div class="hamburger">
             <i class="fas fa-bars"></i>
             <i class="fas fa-times"></i>
@@ -33,11 +34,15 @@
             </div>
             <div class="input-group">
                 <label for="prix">Prix</label>
-                <input type="text" id="prix" name="prix" required>
+                <input type="number" id="prix" name="prix" placeholder="Enter price" min="0" step="0.01" required>
             </div>
             <div class="input-group">
                 <label for="phone">Numéro de Téléphone</label>
                 <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email"  required>
             </div>
             <div class="input-group">
                 <label for="options">Gouvernorat</label>

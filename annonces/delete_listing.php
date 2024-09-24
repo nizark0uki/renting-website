@@ -13,14 +13,28 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = intval($_POST['id']); // Get the listing ID from the POST request
+    $id = intval($_POST['id']);  // Get ID from the POST request
+    $email = $conn->real_escape_string($_POST['email']);  // Get the email from the POST request and prevent SQL injection
 
-    // Delete the listing from the database 
-    $sql = "DELETE FROM loan_user WHERE id = $id";
-    if ($conn->query($sql) === TRUE) {
-        echo "Listing deleted successfully";
+    // Verify the email associated with the listing before deletion
+    $verifySql = "SELECT email FROM loan_user WHERE id = $id";
+    $result = $conn->query($verifySql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row['email'] === $email) {
+            // If the email matches, proceed with deletion
+            $deleteSql = "DELETE FROM loan_user WHERE id = $id";
+            if ($conn->query($deleteSql) === TRUE) {
+                echo "Listing deleted successfully";
+            } else {
+                echo "Error deleting listing: " . $conn->error;
+            }
+        } else {
+            echo "Error: Incorrect email for listing ID $id";
+        }
     } else {
-        echo "Error deleting listing: " . $conn->error;
+        echo "No listing found with ID $id";
     }
 }
 

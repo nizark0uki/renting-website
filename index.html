@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="resources/cpu.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">    
+    <title>CPU Loc'</title>
 </head>
 <body>
     <header>
-        <img src="resources/cpu.png">
+        <img src="resources/cpu1.PNG">
         <div class="hamburger">
             <i class="fas fa-bars"></i>
             <i class="fas fa-times"></i>
@@ -40,9 +42,21 @@
         </div>
     </section>
     <section class="derniers-annonces" id="listings">
-        <h2>Derniers Annonces</h2>
+        <h2>dernières Annonces</h2>
         <div id="lastListing"></div>
     </section>
+
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <h2>Confirmer la suppression</h2>
+            <p>Cette action ne peut pas être annulée.</p>
+            <input type="email" id="emailInput" placeholder="Entrez votre email" required />
+            <div class="btn-container">
+                <button class="close">Annuler</button>
+                <button id="confirmDelete">Supprimer</button>
+            </div>
+        </div>
+    </div>
     
     <footer>
         <p>&copy; 2024 <a href="https://www.cpu-isimm.tn/" target="_blank">CPU</a>. All rights reserved.</p>
@@ -54,52 +68,7 @@
 
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', fetchListings);
-
-function fetchListings() {
-    fetch('fetch_listings.php')
-        .then(response => response.text())
-        .then(data => {
-            const lastListingDiv = document.getElementById('lastListing');
-            lastListingDiv.innerHTML = data; // Insert the fetched listings
-
-            // Attach event listeners to delete buttons
-            const deleteButtons = document.querySelectorAll('.delete-btn');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = this.dataset.id; // Get the ID from the data attribute
-                    deleteListing(id);
-                });
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching listings:', error);
-        });
-}
-
-function deleteListing(id) {
-    if (confirm('Are you sure you want to delete this listing?')) {
-        fetch('delete_listing.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `id=${id}` // Send the ID as POST data
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data); // Log the response from the server
-            fetchListings(); // Refresh the listings
-        })
-        .catch(error => {
-            console.error('Error deleting listing:', error);
-        });
-    }
-}
-
-
-    </script>
 </body>
 </html>

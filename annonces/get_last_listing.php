@@ -38,7 +38,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $type = htmlspecialchars($row['type']);
         $governorat = htmlspecialchars($row['governorat']);
-        $image = 'images/' . htmlspecialchars($row['image']);
+        $image = !empty($row['image']) ? 'images/' . htmlspecialchars($row['image']) : 'images/home.png';
         $prix = htmlspecialchars($row['prix']);
         $name = htmlspecialchars($row['name']); 
         $phone = htmlspecialchars($row['tel']); 
@@ -62,8 +62,8 @@ if ($result->num_rows > 0) {
         echo '                <i class="fa-solid fa-trash delete-btn" data-id="' . $id . '"></i>'; 
         echo '            </div>';
         echo '            <div class="description">';
-        echo '                <p>Nom de propriétaire: ' . $name . '</p>';
-        echo '                <p>Numéro de propriétaire: ' . $phone . '</p>';
+        echo '                <p><b>Nom de propriétaire:</b> ' . $name . '</p>';
+        echo '                <p><b>Numéro de propriétaire:</b> ' . $phone . '</p>';
         echo '            </div>';
         echo '            <div class="prix">' . $prix . 'dt/mois</div>';
         echo '        </div>';
@@ -78,7 +78,7 @@ if ($result->num_rows > 0) {
         echo '</div>';
     }
 } else {
-    echo "<p>No listings found.</p>";
+    echo "<p>Aucune annonce trouvée.</p>";
 }
 
 $conn->close();

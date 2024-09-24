@@ -19,7 +19,7 @@ header {
 }
 
 header img{
-    height: 35px;
+    height: 80px;
     margin-left: 30px;
 }
 
@@ -70,7 +70,7 @@ li a {
     color: white;
 }
 
-@media (max-width: 565px) {
+@media (max-width: 660px) {
     header ul {
         display: none; 
         flex-direction: column;
@@ -312,6 +312,75 @@ li a {
     .annonce{
         width: 90%;
     }
+}
+
+/* Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    margin: 15% auto;
+    max-width: 350px;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+}
+
+.modal-content input{
+    display: block;
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.btn-container{
+    display: flex;
+    width: 100%;
+}
+
+.modal-content button {
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.close {
+    background-color: gray;
+    margin-right: 5px;
+    color: white;
+}
+
+.close:hover {
+    background-color: rgb(80, 80, 80);
+}
+
+#confirmDelete {
+    background-color: brown;
+    color: white;
+    margin-left: 5px;
+}
+
+#confirmDelete:hover {
+    background-color: rgb(119, 29, 29);
 }
 
 /* Footer */
